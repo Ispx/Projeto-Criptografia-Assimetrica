@@ -44,6 +44,7 @@ public class program {
 		keyCriptDescript = new KeyCriptDescript(privateKey, chave);
 
 		cript = new Criptografia(privateKey,chave,msg);
+		cript.Criptografia();
 		System.out.println(cript.getMensagemCript());
 
 		

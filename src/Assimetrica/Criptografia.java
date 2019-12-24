@@ -3,30 +3,31 @@
 public class Criptografia extends KeyCriptDescript{
 
 	private String mensagemCript;
-	private String mensagemDesript;
+
 	private Letters letters = new Letters();
 	private ChavePrivada privateKey;
 	private KeyCriptDescript keyCriptDescript;
+	private String mensagem;
 	
-	
-	public Criptografia(String mensagemCript, ChavePrivada privateKey,
-			KeyCriptDescript keyCriptDescript) {
-		super();
-		
-	}
+
 
 	public Criptografia(ChavePrivada privateKey, int position, String mensagem) {
-		keyCriptDescript = new KeyCriptDescript(privateKey, position);
+		super(privateKey, position);
+		this.mensagem = mensagem;
+		keyCriptDescript = new KeyCriptDescript(privateKey,position);
+	}
+
+	public void Criptografia() {
 		String codification = "";
-		for(int i = 0; i < mensagem.length(); i ++) {
+		for(int i = 0; i < getMensagem().length(); i ++) {
 			
-			if(mensagem.substring(i,i+ 1).equals(" ")) {
+			if(getMensagem().substring(i,i+ 1).equals(" ")) {
 				codification = codification + " ";
 			}
 			
-			else if(letters.letters.indexOf(mensagem.substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() >= letters.size() ){
+			else if(letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() >= letters.size() ){
 				
-				int calculo = (letters.letters.indexOf(mensagem.substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() - (letters.size()));
+				int calculo = (letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() - (letters.size()));
 				codification = codification + letters.letters.get(calculo);
 			}
 			
@@ -46,6 +47,17 @@ public class Criptografia extends KeyCriptDescript{
 	public void setMensagemCript(String mensagemCript) {
 		this.mensagemCript = mensagemCript;
 	}
+
+	public String getMensagem() {
+		return this.mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+	
+	
+	
 	
 	
 }
