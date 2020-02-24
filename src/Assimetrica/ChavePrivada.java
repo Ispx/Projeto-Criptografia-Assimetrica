@@ -1,40 +1,41 @@
 package Assimetrica;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChavePrivada {
 	
 	
-	private int key;
+	private int keyPrivate;
 	
-	public ChavePrivada(int key) {
-		this.key = key;
+	public ChavePrivada(int keyPrivate) {
+		this.keyPrivate = keyPrivate;
 	}
 	
 	
-	protected ArrayList<ChavesPublicas> keys = new ArrayList<>();
+	private List<ChavesPublicas> keyPublic = new ArrayList<>();
 	
-	public void addKey(ChavesPublicas key) {
-		keys.add(key);
+	public void addKeyPublic(ChavesPublicas key) {
+		keyPublic.add(key);
 	}
 	public void remKey(ChavesPublicas key) {
-		keys.remove(key);
+		keyPublic.remove(key);
 	}
-	public int sizeKey() {
-		return keys.size();
-	}
-
-	//Sobre carga do método getKey
-	public ChavesPublicas getKey(int i) {
-		return keys.get(i);
-	}
-	
-	public int getKey() {
-		return this.key;
+	public int sizeKeysPublics() {
+		return keyPublic.size();
 	}
 
-	public void setKey(int key) {
-		this.key = key;
+
+	public ChavesPublicas getKeyPublic(int i) {
+		return keyPublic.get(i);
+	}
+	public List<ChavesPublicas> getKeysPublics(){return keyPublic ; }
+	public int getKeyPrivate() {
+		return this.keyPrivate;
+	}
+
+	public void setKeyPrivate(int keyPrivate) {
+		this.keyPrivate = keyPrivate;
 	}
 	
 	

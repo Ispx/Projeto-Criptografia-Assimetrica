@@ -1,9 +1,11 @@
 package Assimetrica;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Letters {
-	protected ArrayList<String> letters = new ArrayList<>(){{add("a");add("b");add("c");add("d");add("e");add("f");add("g");add("h");add("i");add("j");add("k");add("l");add("m");add("n");add("o");add("p");add("q");add("r");add("s");add("t");add("u");add("v");add("w");add("x");add("y");add("z");}};
+	protected List<String> letters = new ArrayList<>(){{add("a");add("b");add("c");add("d");add("e");add("f");add("g");add("h");add("i");add("j");add("k");add("l");add("m");add("n");add("o");add("p");add("q");add("r");add("s");add("t");add("u");add("v");add("w");add("x");add("y");add("z");}};
 
 	public Letters() {
 		

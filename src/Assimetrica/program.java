@@ -1,21 +1,20 @@
 package Assimetrica;
 
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class program {
 	public static void main(String[] args) {
 		
-		// TODO Auto-generated method stub
-		boolean qtd = true;
+		
+
 		Scanner sc = new Scanner(System.in);
-		String msg = "IsAqUe sAnToS PaiXao";
-		int keyPublic;
-		
-		
-		ChavePrivada privateKey;
-		ChavesPublicas publicKeys;
+		String msg;
+		ChavePrivada privateKey ;
 		KeyCriptDescript keyCriptDescript;
 		Criptografia cript;
+
+
 		
 		System.out.println("Mensagem:  ");
 		msg = sc.nextLine();
@@ -24,28 +23,24 @@ public class program {
 		while(true) {
 			System.out.println("Informe uma chave publica: ");
 			int k = sc.nextInt();
-			publicKeys = new ChavesPublicas(k);
-			privateKey.addKey(publicKeys);
+			privateKey.addKeyPublic(new ChavesPublicas(k));
 			
 			System.out.println("Deseja continuar? (s/n)");
 			String opc = sc.next();
-			if(opc.equalsIgnoreCase("n")) {
+			if(!opc.equalsIgnoreCase("s")) {
 				break;
 			}
 		}
 		
-		System.out.println("Chaves públicas:");
-		for(int i = 0; i < privateKey.sizeKey(); i ++) {
-			System.out.println(" Index: ["+ i + "] " + "Chave pública: " + privateKey.getKey(i).getKey());
-		}
-		System.out.println("Informe o indíce da chave pública para Criptografar: ");
-		int chave = sc.nextInt();
-		
-		keyCriptDescript = new KeyCriptDescript(privateKey, chave);
+		System.out.println("Chaves publicas:");
+		AtomicInteger i = new AtomicInteger();
+		privateKey.getKeysPublics().forEach(x->  System.out.println(i.getAndIncrement() + " - " + x.getKey()));
 
-		cript = new Criptografia(privateKey,chave,msg);
-		cript.Criptografia();
-		System.out.println(cript.getMensagemCript());
+		System.out.println("Informe o indice da chave publica para Criptografar: ");
+		int index = sc.nextInt();
+		cript = new Criptografia(privateKey,index,msg);
+		System.out.println(cript.Criptografia());
+		System.out.println(cript.Descriptografia(privateKey.getKeyPrivate()));
 
 		
 		

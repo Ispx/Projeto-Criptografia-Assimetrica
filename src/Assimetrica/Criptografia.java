@@ -2,22 +2,15 @@
 
 public class Criptografia extends KeyCriptDescript{
 
-	private String mensagemCript;
-
 	private Letters letters = new Letters();
-	private ChavePrivada privateKey;
-	private KeyCriptDescript keyCriptDescript;
 	private String mensagem;
-	
-
 
 	public Criptografia(ChavePrivada privateKey, int position, String mensagem) {
 		super(privateKey, position);
 		this.mensagem = mensagem;
-		keyCriptDescript = new KeyCriptDescript(privateKey,position);
 	}
 
-	public void Criptografia() {
+	public String Criptografia() {
 		String codification = "";
 		for(int i = 0; i < getMensagem().length(); i ++) {
 			
@@ -25,28 +18,46 @@ public class Criptografia extends KeyCriptDescript{
 				codification = codification + " ";
 			}
 			
-			else if(letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() >= letters.size() ){
+			else if(letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + getKeyCriptDescript() >= letters.size() ){
 				
-				int calculo = (letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript() - (letters.size()));
+				int calculo = (letters.letters.indexOf(getMensagem().substring(i,i+1).toLowerCase()) + getKeyCriptDescript() - (letters.size()));
 				codification = codification + letters.letters.get(calculo);
 			}
 			
 			else {
-				codification = codification + letters.letters.get(letters.letters.indexOf(mensagem.substring(i,i+1).toLowerCase()) + keyCriptDescript.getKeyCriptDescript());
+				codification = codification + letters.letters.get(letters.letters.indexOf(mensagem.substring(i,i+1).toLowerCase()) + getKeyCriptDescript());
 			}			
 		}
 		
-		setMensagemCript(codification);
+		return codification;
 		
 	}
 
-	public String getMensagemCript() {
-		return this.mensagemCript;
+	public String Descriptografia(int privateKey){
+
+		String descCodification = "";
+		for(int i = 0; i < Criptografia().length(); i ++) {
+
+			if(Criptografia().substring(i,i+ 1).equals(" ")) {
+				descCodification = descCodification + " ";
+			}
+
+			else if(letters.letters.indexOf(Criptografia().substring(i,i+1).toLowerCase()) - getKeyCriptDescript() < 0){
+
+				int calculo = (letters.letters.indexOf(Criptografia().substring(i,i+1).toLowerCase()) - getKeyCriptDescript()) + letters.size();
+				descCodification = descCodification + letters.letters.get(calculo);
+			}
+
+			else {
+				descCodification = descCodification + letters.letters.get(letters.letters.indexOf(Criptografia().substring(i,i+1).toLowerCase()) - getKeyCriptDescript());
+			}
+		}
+
+		return descCodification;
+
 	}
 
-	public void setMensagemCript(String mensagemCript) {
-		this.mensagemCript = mensagemCript;
-	}
+
 
 	public String getMensagem() {
 		return this.mensagem;
